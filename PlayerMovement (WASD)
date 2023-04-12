@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WASD : MonoBehaviour
+{
+
+    public float velocidade = 15.0f;
+    
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+      velocidade = 15.0f;
+    
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.D))
+        {
+            print("right arrow key is held down");
+            
+            transform.Translate(new Vector3 (0,0,1) * Time.deltaTime * velocidade);
+           
+        }
+        
+        if (Input.GetKey(KeyCode.A))
+        {
+            print("left arrow is held down");
+
+            transform.Translate(new Vector3 (0,0,-1) * Time.deltaTime * velocidade);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+           print("down is key held down");
+            transform.Translate(new Vector3 (1,0,0) * Time.deltaTime * velocidade);
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+           print("up key is held down");
+            transform.Translate(new Vector3 (-1,0,0) * Time.deltaTime * velocidade);
+        }
+    }
+}
