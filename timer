@@ -24,7 +24,7 @@ public class TimerScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("Time is UP!");
+                Debug.Log("Acabou o tempo!");
                 TimeLeft = 0;
                 TimerOn = false;
             }
