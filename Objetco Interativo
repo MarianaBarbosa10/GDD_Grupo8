@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+
+public class InteractableObject : MonoBehaviour
+{
+    public Animator animator;
+    [SerializeField] private string triggerName;
+    [SerializeField] private float animationTime;
+
+    [SerializeField] private UnityEvent onInteract;
+    // recurso ao animator
+    private bool isInteracting = false; 
+    
+    // indica se a interação está em andamento
+
+    public void Interact()
+    {
+        // verifica se a animação de interação não está em andamento
+        if (!isInteracting)
+        {
+            // mensagem de interacao
+            Debug.Log("A usar " + gameObject.name);
+            // ativa a interação e reproduz a animação
+            isInteracting = true;
+            StartCoroutine(InteractRoutine(animationTime));
+        }
+    }
+    public IEnumerator InteractRoutine(float time)
+    {
+        animator.SetTrigger(triggerName);
+        yield return new WaitForSeconds(time);
+        onInteract.Invoke();
+    }
+}
