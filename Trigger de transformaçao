@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class TriggerTransformacao : MonoBehaviour
 {
-    public GameObject playerCharacterA; // aqui mudar para o nome que for dado ao passaro
-    public GameObject playerCharacterB; // aqui mudar para o nome que for dado à menina 
+    public GameObject char1; // aqui mudar para o nome que for dado ao passaro
+    public GameObject char2; // aqui mudar para o nome que for dado à menina 
 
-    private bool isTransformed = false; // Indica se o jogador já está transformado
+    //public bool isTransformed;
+
+    void Start() {
+        char1.SetActive(true);
+        char2.SetActive(false);
+
+        //isTransformed = false; // Indica se o jogador já está transformado
+
+    }
+    //private bool isTransformed = false; // Indica se o jogador já está transformado
+
+    void Update() {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isTransformed)
+        Debug.Log("funciona");
+        if (other.CompareTag("transforma") /*&& !isTransformed*/)
         {
-            // Desativa o personagem passaro e ativa o personagem menina
-            playerCharacterA.SetActive(false); // mudar playerCharatcerA para nome do passaro
-            playerCharacterB.SetActive(true); // mudar playerCharacterB para nome da menina
+            //isTransformed = true; // Marca o jogador como transformado
 
-            isTransformed = true; // Marca o jogador como transformado
-            Destroy(gameObject);
+            // Desativa o personagem passaro e ativa o personagem menina
+            char1.SetActive(!char1.active); // mudar playerCharatcerA para nome do passaro
+            char2.SetActive(!char2.active); // mudar playerCharacterB para nome da menina
+
+            //Destroy(gameObject);
+        }else{
+           // char1.SetActive(true); 
+            //char2.SetActive(false); 
+
         }
     }
 }
