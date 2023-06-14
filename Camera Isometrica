@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraIsometrica : MonoBehaviour
+
+//criar uma camera e chamar de CameraIsometrica
+{
+    public Transform target; 
+
+    void LateUpdate()
+    {
+        if (target != null)
+        {
+            // Obtém a posição do jogador
+            Vector3 playerPosition = target.position;
+
+            // Mantém a posição Y
+            playerPosition.y = transform.position.y;
+
+            // Define a nova posição 
+            transform.position = playerPosition;
+        }
+    }
+}
