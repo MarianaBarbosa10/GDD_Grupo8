@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TriggerTransformacao : MonoBehaviour
+{
+    public GameObject playerCharacterA; // aqui mudar para o nome que for dado ao passaro
+    public GameObject playerCharacterB; // aqui mudar para o nome que for dado à menina 
+
+    private bool isTransformed = false; // Indica se o jogador já está transformado
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !isTransformed)
+        {
+            // Desativa o personagem passaro e ativa o personagem menina
+            playerCharacterA.SetActive(false); // mudar playerCharatcerA para nome do passaro
+            playerCharacterB.SetActive(true); // mudar playerCharacterB para nome da menina
+
+            isTransformed = true; // Marca o jogador como transformado
+            Destroy(gameObject);
+        }
+    }
+}
