@@ -1,0 +1,37 @@
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class InteracaoJogador : MonoBehaviour
+
+//script tem de ter o nome InteracaoJogador
+{
+    public float interactionDistance = 2f; // Distância máxima de interação
+    public LayerMask interactableLayer; // Camada dos objetos interativos
+                                        // ambos os pontos são costumizaveis
+
+    void Update()
+    {
+        // Verifica se o jogador pressionou a tecla de interação
+        // aqui é criado um raio em volta do jogador para definir a distência do objecto
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, interactionDistance, interactableLayer))
+        {
+            InteractableObject interactable = hit.collider.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    interactable.Interact();
+                }
+
+                GameManager.instance.ShowToolTip("Clica no E para interagir");
+            }
+        }
+        else
+        {
+            GameManager.instance.CloseToolTip();
+        }
+
+    }
+}
