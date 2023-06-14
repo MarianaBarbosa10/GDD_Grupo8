@@ -1,0 +1,17 @@
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TriggerCenas : MonoBehaviour
+{
+    public string sceneName; // mudar nome da cena aqui
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")) // verifica se o objeto que entrou no trigger tem a tag "Player"
+        {
+            SceneManager.LoadScene(sceneName); // passa para a cena com o nome indicado
+        }
+    }
+}
