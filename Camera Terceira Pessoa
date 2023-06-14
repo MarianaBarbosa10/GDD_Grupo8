@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraTerceiraPessoa : MonoBehaviour
+{
+    public Transform target; 
+    public Vector3 offset = new Vector3(0f, 2f, -5f); 
+    public float velocidadeRotacao = 5f; // Velocidade de rotacao da camara
+
+    private void LateUpdate()
+    {
+        
+        Vector3 posicaoDesejada = target.position + offset;
+
+        // usamos um valor de interpolaçao 
+        transform.position = Vector3.Lerp(transform.position, posicaoDesejada, Time.deltaTime * velocidadeRotacao);
+
+        // Aponta a camara para o alvo
+        transform.LookAt(target);
+    }
+}
